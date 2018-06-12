@@ -21,7 +21,6 @@ class BinaryTree
 {
 public:
     BinaryTree():root(nullptr){}
-    /////// insert: data
     void insert(T data)
     {
         if(root == nullptr)
@@ -33,8 +32,28 @@ public:
             insert(data, root);
         }
     }
-    ///////insert: data node
-    void insert(T val, Node<T>* temp)
+    Node<T>* search(T val)
+    {
+        return search(val, root);
+    }
+    void postorder_print()
+    {
+	    postorder_print(root);
+	    std::cout << "\n";
+    }
+    void inorder_print()
+    {
+        inorder_print(root);
+        std::cout << "\n";
+    }
+    void preorder_print()
+    {
+        preorder_print(root);
+        std::cout << "\n";
+    }
+private:
+    Node<T>* root;
+	void insert(T val, Node<T>* temp)
     {
         if( val < temp->data)
         {
@@ -59,11 +78,6 @@ public:
             }
         }
     }
-    ////////search: data
-    Node<T>* search(T val)
-    {
-        return search(val, root);
-    }
     Node<T>* search(T val, Node<T>* temp)
     {
         if(temp != nullptr)
@@ -83,49 +97,20 @@ public:
         }
         return nullptr;
     }
-
-    ///print
     void postorder_print()
     {
 	    postorder_print(root);
 	    std::cout << "\n";
-    }
-    void postorder_print(Node<T>* temp)
-    {
-	    if(temp != NULL)
-        {
-		    inorder_print(temp->left);
-		    inorder_print(temp->right);
-		    std::cout << temp->data << ",";
-	    }
     }
     void inorder_print()
     {
         inorder_print(root);
         std::cout << "\n";
     }
-    void inorder_print(Node<T>* temp)
-    {
-        if(temp != nullptr){
-            inorder_print(temp->left);
-            std::cout << temp->data << ",";
-            inorder_print(temp->right);
-        }
-    }
+    
     void preorder_print()
     {
         preorder_print(root);
         std::cout << "\n";
     }
-
-    void preorder_print(Node<T> *temp)
-    {
-        if(temp != NULL){
-            std::cout << temp->data << ",";
-            inorder_print(temp->left);
-            inorder_print(temp->right);
-        }
-    }
-private:
-    Node<T>* root;
 };
